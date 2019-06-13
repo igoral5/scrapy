@@ -66,6 +66,10 @@ def get_project_settings():
     settings_module_path = os.environ.get(ENVVAR)
     if settings_module_path:
         settings.setmodule(settings_module_path, priority='project')
+    
+    override_settings = os.environ.get('SCRAPY_SETTINGS_MODULE_TO_OVERRIDE')
+    if override_settings:
+        settings.setmodule(override_settings, priority='project')
 
     # XXX: remove this hack
     pickled_settings = os.environ.get("SCRAPY_PICKLED_SETTINGS_TO_OVERRIDE")
